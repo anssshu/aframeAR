@@ -19,8 +19,26 @@
 
     <body style='margin : 0px; overflow: hidden;'>
         <a-scene embedded arjs='sourceType: webcam;'>
-         <a-box position='0 0.5 0' material='opacity: .7;' color="red"></a-box>
+            <a-assets timeout="30000">
+                <img id="my-image" src="foo.png">
+                <!-- Model source: https://sketchfab.com/3d-models/spinosaurus-2135501583704537907645bf723685e7
+                     Model author: https://sketchfab.com/VapTor
+                     Model license: CC Attribution -->
+                <a-asset-item id="spinosaurus" src="https://cdn.glitch.com/324a5290-5aa7-4efc-92d6-ae0736433b12%2Fspinosaurus.glb" response-type="arraybuffer"></a-asset-item>
+              </a-assets>
+              <a-entity id="dino"  animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" position="0 0 -10" scale="0.5 0.5 0.5">
+        <a-entity position="0 0 0" rotation="0 45 0"
+                  gltf-model="#spinosaurus" 
+                  animation-mixer
+                  shadow="cast: true; receive: false"></a-entity>
+      </a-entity> 
+      <a-entity rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
+          <a-sphere position="0 1.8 0" color="mediumseagreen"></a-sphere>
+       </a-entity>
+      <a-image src="#my-image"></a-image>
+         
          <a-marker-camera preset='hiro'></a-marker-camera>
+
         </a-scene>
        </body>
   </body>
